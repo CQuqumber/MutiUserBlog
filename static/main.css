@@ -49,6 +49,11 @@ input[type=submit] {
     margin-top: 100px;
 }
 
+.footer a img {
+    width: 48px;
+    height: 48px;
+}
+
 .main-title {
     display: block;
     color: #222;
@@ -85,7 +90,3 @@ input[type=submit] {
     margin-top: 5px;
 }
 
-.footer a img {
-    width: 48px;
-    height: 48px;
-}
