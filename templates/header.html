@@ -7,8 +7,12 @@
 		<div class="collapse navbar-collapse" id ="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
       			{% if not user %}
-      				<li><a href="/signup">Signup</a></li>
-                    <li><a href="/login">Login</a></li>
+      				<a href="/signup">
+                        <button type="button" class="btn btn-default navbar-btn">Signup</button>
+                    </a>
+                    <a href="/login">
+                        <button type="button" class="btn btn-default navbar-btn">Login</button>
+                    </a>
 
                 {% else %}
 
