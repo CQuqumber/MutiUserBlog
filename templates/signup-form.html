@@ -1,70 +1,59 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-  <head>
-    <title>Sign Up</title>
-    <style type="text/css">
-      .label {text-align: right}
-      .error {color: red}
-    </style>
+{% block content %}
+<form class="form-horizontal" action='' method="post">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Sign Up</legend>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="username">Username</label>
+      <div class="controls">
+        <input type="text" id="username" name="username" value="{{username}}" placeholder="" class="input-xlarge">
+        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+        <p class="error">{{error_username}}</p>
+      </div>
+    </div>
 
-  </head>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="password">Password</label>
+      <div class="controls">
+        <input type="password" id="password" name="password" value="" placeholder="" class="input-xlarge">
+        <p class="help-block">Password should be at least 3 characters</p>
+        <p class="error">{{error_password}}</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password -->
+      <label class="control-label"  for="password_confirm">Password ( Verify )</label>
+      <div class="controls">
+        <input type="password" id="password_confirm" name="verify" value="" placeholder="" class="input-xlarge">
+        <p class="help-block">Please verify password</p>
+        <p class="error">{{error_verify}}</p>
+      </div>
+    </div>
+ 
 
-  <body>
-    <h2>Signup</h2>
-    <form method="post">
-      <table>
-        <tr>
-          <td class="label">
-            Username
-          </td>
-          <td>
-            <input type="text" name="username" value="{{username}}">
-          </td>
-          <td class="error">
-            {{error_username}}
-          </td>
-        </tr>
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail (optional)</label>
+      <div class="controls">
+        <input type="text" id="email" name="email" value="{{email}}" placeholder="" class="input-xlarge">
+        <p class="help-block">E-mail not a must</p>
+        <pclass="error">{{error_email}}</p>
+      </div>
+    </div>
 
-        <tr>
-          <td class="label">
-            Password
-          </td>
-          <td>
-            <input type="password" name="password" value="">
-          </td>
-          <td class="error">
-            {{error_password}}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Verify Password
-          </td>
-          <td>
-            <input type="password" name="verify" value="">
-          </td>
-          <td class="error">
-            {{error_verify}}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">
-            Email (optional)
-          </td>
-          <td>
-            <input type="text" name="email" value="{{email}}">
-          </td>
-          <td class="error">
-            {{error_email}}
-          </td>
-        </tr>
-      </table>
-
-      <input type="submit">
-    </form>
-  </body>
-
-</html>
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" type="submit" >Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}
