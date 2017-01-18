@@ -33,11 +33,11 @@ class Signup(BlogHandler):
                       email = self.email)
 
         if not valid_username(self.username):
-            params['error_username'] = "That's not a valid username."
+            params['error_username'] = "That's not a valid username or password."
             have_error = True
 
         if not valid_password(self.password):
-            params['error_password'] = "That wasn't a valid password."
+            params['error_password'] = "That's not a valid username or password."
             have_error = True
         elif self.password != self.verify:
             params['error_verify'] = "Your passwords didn't match."
