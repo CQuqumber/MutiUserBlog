@@ -1,5 +1,5 @@
-import os
-from handler import BlogHandler
+#import os
+from handler import *
 
 from google.appengine.ext import db
 

@@ -2,7 +2,7 @@ import webapp2
 import re
 
 from handler import BlogHandler
-from data import User
+from model_user import User
 
 
 

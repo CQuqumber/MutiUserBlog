@@ -28,16 +28,16 @@ class User(db.Model):
     email = db.StringProperty()
 
     @classmethod
-    def by_id(cls, uid):
+    def by_id(cls, uid):    #at { @ } : decorators >> User.by_id
         return User.get_by_id(uid, parent = users_key())
 
     @classmethod
-    def by_name(cls, name):
+    def by_name(cls, name):    #at { @ } : decorators >> User.by_name
         u = User.all().filter('name =', name).get()
         return u
 
     @classmethod
-    def register(cls, name, pw, email = None):
+    def register(cls, name, pw, email = None): #at { @ } : decorators >> User.register
         pw_hash = make_pw_hash(name, pw)
         return User(parent = users_key(),
                     name = name,
@@ -45,7 +45,7 @@ class User(db.Model):
                     email = email)
 
     @classmethod
-    def login(cls, name, pw):
+    def login(cls, name, pw):   #at { @ } : decorators >> User.login
         u = cls.by_name(name)
         if u and valid_pw(name, pw, u.pw_hash):
             return u

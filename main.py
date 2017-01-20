@@ -1,7 +1,7 @@
 import webapp2
-from post import *
-from registration import *
-from data import *
+from model_post import *
+from controller import *
+from model_user import *
 from handler import *
 
 
@@ -9,7 +9,7 @@ class MainPage(BlogHandler):
     def get(self):
         self.render('base.html')
 
-#remark delete welcome.html
+#remark : delete welcome.html
 
 app = webapp2.WSGIApplication([('/', MainPage),
                                ('/blog/?', BlogFront),
@@ -19,4 +19,4 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                ('/login', Login),
                                ('/logout', Logout),
                                ],
-                              debug=True)
+                              debug=True)   #never "deploy" an application with debug_mode=True
