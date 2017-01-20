@@ -7,10 +7,10 @@ from handler import *
 
 
 
-
 #remark : delete welcome.html
 
-app = webapp2.WSGIApplication([('/', MainPage),
+app = webapp2.WSGIApplication([('/', Welcome),
+                               ('/blog/?', MainPage),
                                ('/blog/([0-9]+)', PostPage),
                                ('/blog/newpost', NewPost),
                                ('/signup', Register),

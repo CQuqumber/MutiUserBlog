@@ -18,6 +18,10 @@ EMAIL_RE  = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
 def valid_email(email):
     return not email or EMAIL_RE.match(email)
 
+class Welcome(BlogHandler):
+    def get(self):
+        self.render("base.html")
+
 class Signup(BlogHandler):
     def get(self):
         self.render("signup-form.html")
