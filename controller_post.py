@@ -1,12 +1,14 @@
 from handler import *
 from model_post import *
 
+def blog_key(name = 'default'):
+    return db.Key.from_path('blogs', name)
 
 class MainPage(BlogHandler):
     def get(self):
     	posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
         if posts:
-        	self.render('front.html', posts = posts)
+        	self.render('index.html', posts = posts)
 
 class PostPage(BlogHandler):
     def get(self, post_id):
@@ -16,8 +18,8 @@ class PostPage(BlogHandler):
         if not post:
             self.error(404)
             return
-
-        self.render("permalink.html", post = post)
+        self.render("permalink.html",
+        			post = post)
 
 class NewPost(BlogHandler):
     def get(self):
@@ -34,7 +36,9 @@ class NewPost(BlogHandler):
         content = self.request.get('content')
 
         if subject and content:
-            p = Post(parent = blog_key(), subject = subject, content = content)
+            p = Post(parent = blog_key(),
+            			subject = subject,
+            			content = content)
             p.put()
             self.redirect('/blog/%s' % str(p.key().id()))
         else:

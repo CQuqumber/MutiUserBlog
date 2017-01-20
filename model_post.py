@@ -5,12 +5,11 @@ from google.appengine.ext import db
 
 ##### blog stuff
 
-def blog_key(name = 'default'):
-    return db.Key.from_path('blogs', name)
 
 class Post(db.Model):
     subject = db.StringProperty(required = True)
     content = db.TextProperty(required = True)
+    #author = db.StringProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
     last_modified = db.DateTimeProperty(auto_now = True)
     #user = db.UserProperty(required = True)
@@ -20,17 +19,18 @@ class Post(db.Model):
         return render_str("post.html", p = self)
 
 
-'''
+
 class Like(db.Model):
     """docstring for Like"""
-    article = db.ReferenceProperty(required = True)
-    bloger = db.ReferenceProperty(required = True)
-
+    like_post = db.ReferenceProperty(Post, required = True)
+    like_author = db.ReferenceProperty(User, required = True)
+    like_create = db.DateTimeProperty(auto_now_add = True)
+               #ReferenceProperty(reference_class=None, verbose_name=None, collection_name=None, ...)
     @classmethod
-    def by_article_id(cls, article_id):
-        l = Like.
+    def clickLike(cls, post_id):
+        c = Like(like_post = post_id,
+                    like_author = like_author)
+        c.put()
+        return c.key.id_or_name()
 
-    @classmethod
-    def permit_like(cls, article_id, user_id):
-        pass
-'''
+
