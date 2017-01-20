@@ -6,14 +6,11 @@ from model_user import *
 from handler import *
 
 
-class MainPage(BlogHandler):
-    def get(self):
-        self.render('base.html')
+
 
 #remark : delete welcome.html
 
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/blog/?', BlogFront),
                                ('/blog/([0-9]+)', PostPage),
                                ('/blog/newpost', NewPost),
                                ('/signup', Register),

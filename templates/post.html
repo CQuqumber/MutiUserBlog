@@ -1,15 +1,12 @@
-<div class="post">
-  <div class="post-heading">
-    <div class="post-title">
-      {{p.subject}}
-    </div>
-
-    <div class="post-date">
-      {{p.created.strftime("%b %d, %Y")}}
-    </div>
-  </div>
-
-  <div class="post-content">
-    {{p._render_text | safe}}
-  </div>
+<div class="jumbotron">
+      <div class="caption">
+            <h1>{{p.subject}}</h1>
+            <p>{{p._render_text | safe}}</p>
+            {{p.created.strftime("%b %d, %Y")}}
+        </div>
+</div>
+<div class="btn-group btn-group-sm" role="group">
+    <button type="button" class="btn btn-default">
+        <a href="/">Back</a>
+    </button>
 </div>

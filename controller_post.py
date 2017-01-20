@@ -1,10 +1,12 @@
-from handler import BlogHandler
+from handler import *
 from model_post import *
 
-class BlogFront(BlogHandler):
+
+class MainPage(BlogHandler):
     def get(self):
-        posts = greetings = Post.all().order('-created')
-        self.render('front.html', posts = posts)
+    	posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+        if posts:
+        	self.render('front.html', posts = posts)
 
 class PostPage(BlogHandler):
     def get(self, post_id):

@@ -20,3 +20,16 @@ class Post(db.Model):
         return render_str("post.html", p = self)
 
 
+
+class Like(db.Model):
+    """docstring for Like"""
+    article = db.ReferenceProperty(required = True)
+    bloger = db.ReferenceProperty(required = True)
+
+    @classmethod
+    def by_article_id(cls, article_id):
+        pass
+
+    @classmethod
+    def permit_like(cls, article_id, user_id):
+        pass

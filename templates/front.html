@@ -1,10 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% for p in posts %}
+	<main>
+        <article class="text-center">
+        <div class="post">
+  			<div class="post-heading">
+    			<div class="post-title">
+    				<h3>{{ p.subject }}</h3>
+    			</div>
+    			<div class="post-content">
+    				<p>{{ p.content | safe }}</p>
+    			</div>
+    		<br><br>
+        </article>
+    </main>
 
-  {% for p in posts %}
-    {{ p.render() | safe }}
-    <br><br>
-  {% endfor %}
+
+{% endfor %}
 
 {% endblock %}
+
+
+
+
+
