@@ -4,8 +4,6 @@ from string import letters
 from google.appengine.ext import ndb
 
 
-##### user stuff
-
 def make_salt(length = 5):
     return ''.join(random.choice(letters) for x in xrange(length))
 
@@ -20,7 +18,10 @@ def valid_pw(name, password, h):
     return h == make_pw_hash(name, password, salt)
 
 def users_key(group = 'default'):
-    return db.Key.from_path('users', group)
+    return ndb.Key('users', group)   #db.Key.from_path => ndb.Key
+
+def blog_key(name = 'default'):
+    return ndb.Key('blogs', name)
 
 class User(ndb.Model):
     name = ndb.StringProperty(required = True)

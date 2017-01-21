@@ -13,7 +13,7 @@ class MainPage(BlogHandler):
 class PostPage(BlogHandler):
     def get(self, post_id):
         key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
-        post = key.get()	#db.get(key); NDB  key.get()
+        post = key.get()	#db.get(key) => NDB  key.get()
 
         if not post:
             self.error(404)
@@ -31,10 +31,8 @@ class NewPost(BlogHandler):
     def post(self):
         if not self.user:
             self.redirect('/')
-
         subject = self.request.get('subject')
         content = self.request.get('content')
-
         if subject and content:
             p = Post(parent = blog_key(),
             			subject = subject,
