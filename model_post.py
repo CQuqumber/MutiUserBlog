@@ -12,11 +12,11 @@ class Post(ndb.Model):
     created = ndb.DateTimeProperty(auto_now_add = True)
     likes = ndb.IntegerProperty(default=0)
     last_modified = ndb.DateTimeProperty(auto_now = True)
-'''
+
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str("post.html", p = self)
-'''
+
 
 
 class Comment(ndb.Model):
