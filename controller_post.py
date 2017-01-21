@@ -6,7 +6,7 @@ def blog_key(name = 'default'):
 
 class MainPage(BlogHandler):
     def get(self):
-    	posts = db.GqlQuery("SELECT * FROM Post ORDER BY created DESC")
+    	posts = Post.query()
         if posts:
         	self.render('index.html', posts = posts)
 

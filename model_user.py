@@ -1,7 +1,7 @@
 import random
 import hashlib
 from string import letters
-from google.appengine.ext import db
+from google.appengine.ext import ndb
 
 
 ##### user stuff
@@ -22,30 +22,33 @@ def valid_pw(name, password, h):
 def users_key(group = 'default'):
     return db.Key.from_path('users', group)
 
-class User(db.Model):
-    name = db.StringProperty(required = True)
-    pw_hash = db.StringProperty(required = True)
-    email = db.StringProperty()
+class User(ndb.Model):
+    name = ndb.StringProperty(required = True)
+    pw_hash = ndb.StringProperty(required = True)
+    email = ndb.StringProperty()
 
     @classmethod
-    def by_id(cls, uid):    #at { @ } : decorators >> User.by_id
-        return User.get_by_id(uid, parent = users_key())
+    def get_user_by_id(cls, userid):    #at { @ } : decorators >> User.by_id
+        return User.get_by_id(userid)
 
     @classmethod
-    def by_name(cls, name):    #at { @ } : decorators >> User.by_name
-        u = User.all().filter('name =', name).get()
-        return u
+    def get_user_by_name(cls, name):    #at { @ } : decorators >> User.by_name
+        user = User.query(User.name == name).fetch(1)
+        for u in user:
+            return u
 
     @classmethod
-    def register(cls, name, pw, email = None): #at { @ } : decorators >> User.register
+    def get_user_by_name_pw(cls, name, pw, email = None): #at { @ } : decorators >> User.register
         pw_hash = make_pw_hash(name, pw)
-        return User(parent = users_key(),
-                    name = name,
+        return User(name = name,
                     pw_hash = pw_hash,
                     email = email)
+    @classmethod
+    def get_user_id(cls, user):
+        return user.key.id()
 
     @classmethod
     def login(cls, name, pw):   #at { @ } : decorators >> User.login
-        u = cls.by_name(name)
+        u = cls.get_user_by_name(name)
         if u and valid_pw(name, pw, u.pw_hash):
             return u

@@ -1,17 +1,17 @@
 #import os
 from handler import *
 
-from google.appengine.ext import db
+from google.appengine.ext import ndb
 
 ##### blog stuff
 
 
-class Post(db.Model):
-    subject = db.StringProperty(required = True)
-    content = db.TextProperty(required = True)
+class Post(ndb.Model):
+    subject = ndb.StringProperty(required = True)
+    content = ndb.TextProperty(required = True)
     #author = db.StringProperty(required = True)
-    created = db.DateTimeProperty(auto_now_add = True)
-    last_modified = db.DateTimeProperty(auto_now = True)
+    created = ndb.DateTimeProperty(auto_now_add = True)
+    last_modified = ndb.DateTimeProperty(auto_now = True)
     #user = db.UserProperty(required = True)
 
     def render(self):
@@ -20,17 +20,16 @@ class Post(db.Model):
 
 
 
-class Like(db.Model):
+class Like(ndb.Model):
     """docstring for Like"""
-    like_post = db.ReferenceProperty(Post, required = True)
-    like_author = db.ReferenceProperty(User, required = True)
-    like_create = db.DateTimeProperty(auto_now_add = True)
+    like_post = ndb.KeyProperty(Post, required = True)
+    like_author = ndb.KeyProperty(User, required = True)
                #ReferenceProperty(reference_class=None, verbose_name=None, collection_name=None, ...)
     @classmethod
     def clickLike(cls, post_id):
-        c = Like(like_post = post_id,
-                    like_author = like_author)
+        c = Like(like_post = str(post_id),
+                    like_author = str(like_author))
         c.put()
-        return c.key.id_or_name()
+        return c.key.id()
 
 
