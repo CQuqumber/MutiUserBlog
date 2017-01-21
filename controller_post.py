@@ -1,14 +1,17 @@
 from handler import *
 from model_post import *
 
+
 def blog_key(name = 'default'):
     return ndb.Key('blogs', name)	#db.Key.from_path() => ndb.Key()
 
+
 class MainPage(BlogHandler):
     def get(self):
-    	posts = Post.query()
+    	posts = Post.gql("ORDER BY created DESC")
         if posts:
         	self.render('index.html', posts = posts)
+
 
 class PostPage(BlogHandler):
     def get(self, post_id):
@@ -35,8 +38,9 @@ class NewPost(BlogHandler):
         content = self.request.get('content')
         if subject and content:
             p = Post(parent = blog_key(),
-            			subject = subject,
-            			content = content)
+            		subject = subject,
+            		content = content,
+            		author = self.user)
             p.put()
             self.redirect('/blog/%s' % str(p.key.id()))
         else:

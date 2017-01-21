@@ -3,6 +3,12 @@
 {% block content %}
 {% for p in posts %}
 	<main>
+        {{ p }}
+        <div class="row">
+            <div class="col-md-12">
+                <h5 class="text-center">{{p.author.name}} posted on {{p.created.strftime("%b %d, %Y")}}</h5>
+            </div>
+        </div>
         <article class="text-center">
         <div class="post">
   			<div class="post-heading">
