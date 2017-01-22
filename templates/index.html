@@ -3,23 +3,23 @@
 {% block content %}
 {% for p in posts %}
 	<main>
-        {{ p }}
         <div class="row">
+        <div class="col-md-12">{{ p }}</div>
             <div class="col-md-12">
                 <h5 class="text-center">{{p.author.name}} posted on {{p.created.strftime("%b %d, %Y")}}</h5>
             </div>
         </div>
-            <article class="text-center">
-            <div class="post">
+        <article class="col-md-12 text-center">
+            <div class="jumbotron">
   			   <div class="post-heading">
     			     <div class="post-title">
-    				    <h3><a href="/blog/{{p.key.id()}}">{{ p.subject }}</a></h3>
+    				    <h3><a href="/blog/{{p.key.id()}}">{{ p.subject | safe }}</a></h3>
     			     </div>
     			     <div class="post-content">
     				    <p>{{ p.content | safe }}</p>
                         {% if p.author.name == user.name %}
-                            <a class="btn btn-default" href="#"> Edit</a>
-                            <a class="btn btn-default" href="#"> Delete</a>
+                            <button href="#" class="btn btn-default">Edit</button>
+                            <button href="#" class="btn btn-default">Delete</button>
                         {% endif %}
     			     </div>
     		    <br><br>

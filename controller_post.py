@@ -8,21 +8,10 @@ def blog_key(name = 'default'):
 
 class MainPage(BlogHandler):
     def get(self):
-    	posts = Post.gql("ORDER BY created DESC")
+    	posts = Post.gql("select * from Post ORDER BY created DESC limit 10")
         if posts:
         	self.render('index.html', posts = posts)
 
-
-class PostPage(BlogHandler):
-    def get(self, post_id):
-        key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
-        post = key.get()	#db.get(key) => NDB  key.get()
-
-        if not post:
-            self.error(404)
-            return
-        self.render("permalink.html",
-        			post = post)
 
 class NewPost(BlogHandler):
     def get(self):
@@ -45,5 +34,42 @@ class NewPost(BlogHandler):
             self.redirect('/blog/%s' % str(p.key.id()))
         else:
             error = "subject and content, please!"
-            self.render("newpost.html", subject=subject, content=content, error=error)
+            self.render("newpost.html", 
+            			subject=subject, 
+            			content=content, 
+            			error=error)
 
+
+
+class PostPage(BlogHandler):
+    def get(self, post_id):
+        key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
+        post = key.get()	#db.get(key) => NDB  key.get()
+
+        if not post:
+            self.error(404)
+            return
+        self.render("post_show.html",
+        			post = post)
+
+
+class DropPost(BlogHandler):
+	"""Remove Post"""
+	def get(self, post_id):
+		if self.user and self.user.key.id() == int:
+			key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
+        	post = key.get()
+        	post.delete()
+        	self.redirect('/blog')
+        else:
+        	self.redirect('/login')
+
+'''
+if self.request.get("delete"):
+                # check if the user is the author of this post
+                if post.user.key().id() == User.by_name(self.user.name).key().id():
+                    # delete the post and redirect to the main page
+                    db.delete(key)
+                    time.sleep(0.1)
+                    self.redirect('/')
+                    '''

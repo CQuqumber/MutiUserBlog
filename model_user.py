@@ -4,6 +4,7 @@ from string import letters
 from google.appengine.ext import ndb
 
 
+#   validate psw
 def make_salt(length = 5):
     return ''.join(random.choice(letters) for x in xrange(length))
 
@@ -17,6 +18,8 @@ def valid_pw(name, password, h):
     salt = h.split(',')[0]
     return h == make_pw_hash(name, password, salt)
 
+
+#   Model keys as Parent
 def users_key(group = 'default'):
     return ndb.Key('users', group)   #db.Key.from_path => ndb.Key
 
