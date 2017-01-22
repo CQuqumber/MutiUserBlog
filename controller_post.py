@@ -8,7 +8,7 @@ def blog_key(name = 'default'):
 
 class MainPage(BlogHandler):
     def get(self):
-    	posts = Post.gql("select * from Post ORDER BY created DESC limit 10")
+    	posts = Post.gql("ORDER BY created DESC limit 10")
         if posts:
         	self.render('index.html', posts = posts)
 
@@ -29,7 +29,7 @@ class NewPost(BlogHandler):
             p = Post(parent = blog_key(),
             		subject = subject,
             		content = content,
-            		author = self.user)
+            		user_id = self.user.key.id())
             p.put()
             self.redirect('/blog/%s' % str(p.key.id()))
         else:
@@ -37,7 +37,7 @@ class NewPost(BlogHandler):
             self.render("newpost.html", 
             			subject=subject, 
             			content=content, 
-            			error=error)
+            			error=error)	#newpost.html variables has subject, content, and error
 
 
 
@@ -49,8 +49,8 @@ class PostPage(BlogHandler):
         if not post:
             self.error(404)
             return
-        self.render("post_show.html",
-        			post = post)
+        self.render("post.html",
+        			post = post)	#post.html variable must be 'post'
 
 
 class DropPost(BlogHandler):
@@ -61,8 +61,7 @@ class DropPost(BlogHandler):
         	post = key.get()
         	post.delete()
         	self.redirect('/blog')
-        else:
-        	self.redirect('/login')
+
 
 '''
 if self.request.get("delete"):

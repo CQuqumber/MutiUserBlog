@@ -6,7 +6,7 @@
         <div class="row">
         <div class="col-md-12">{{ p }}</div>
             <div class="col-md-12">
-                <h5 class="text-center">{{p.author.name}} posted on {{p.created.strftime("%b %d, %Y")}}</h5>
+                <h5 class="text-center">{{p.name}} posted on {{p.created.strftime("%b %d, %Y")}}</h5>
             </div>
         </div>
         <article class="col-md-12 text-center">
@@ -17,10 +17,8 @@
     			     </div>
     			     <div class="post-content">
     				    <p>{{ p.content | safe }}</p>
-                        {% if p.author.name == user.name %}
                             <button href="#" class="btn btn-default">Edit</button>
                             <button href="#" class="btn btn-default">Delete</button>
-                        {% endif %}
     			     </div>
     		    <br><br>
             </article>
