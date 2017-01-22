@@ -19,10 +19,6 @@ def valid_pw(name, password, h):
     return h == make_pw_hash(name, password, salt)
 
 
-#   Model keys as Parent
-def users_key(group = 'default'):
-    return ndb.Key('users', group)   #db.Key.from_path => ndb.Key
-
 
 
 class User(ndb.Model):

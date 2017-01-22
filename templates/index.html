@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for p in posts %}
+
 	<main>
         <div class="row">
+        {% for p in posts %}
         <div class="col-md-12">{{ p }}</div>
             <div class="col-md-12">
-                <h5 class="text-center">{{p.name}} posted on {{p.created.strftime("%b %d, %Y")}}</h5>
+                <h5 class="text-center">{{user.name}}, post.user.id : {{p.user_id}}, user.key.id:{{user.key.id()}}, posted on {{p.created.strftime("%b %d, %Y")}}</h5>
             </div>
         </div>
         <article class="col-md-12 text-center">
@@ -17,8 +18,12 @@
     			     </div>
     			     <div class="post-content">
     				    <p>{{ p.content | safe }}</p>
-                            <button href="#" class="btn btn-default">Edit</button>
-                            <button href="#" class="btn btn-default">Delete</button>
+                            <a href="/blog/{{p.key.id()}}/edit">
+                                <button class="btn btn-default">Edit</button>
+                            </a>
+                            <a href="#">
+                                <button class="btn btn-default">Delete</button>
+                            </a>
     			     </div>
     		    <br><br>
             </article>

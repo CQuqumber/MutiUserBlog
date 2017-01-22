@@ -3,10 +3,21 @@ import hmac
 import webapp2
 import jinja2
 from model_user import User
+from google.appengine.ext import ndb
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
                                autoescape = True)
+
+
+#   Model keys as Parent
+def users_key(group = 'default'):
+    return ndb.Key('users', group)   #db.Key.from_path => ndb.Key
+
+
+def blog_key(name = 'default'):
+    return ndb.Key('blogs', name)   #db.Key.from_path() => ndb.Key()
+
 
 secret = 'fart'
 

@@ -2,13 +2,13 @@ from handler import *
 from model_post import *
 
 
-def blog_key(name = 'default'):
-    return ndb.Key('blogs', name)	#db.Key.from_path() => ndb.Key()
+from google.appengine.ext import ndb
 
 
 class MainPage(BlogHandler):
     def get(self):
     	posts = Post.gql("ORDER BY created DESC limit 10")
+
         if posts:
         	self.render('index.html', posts = posts)
 
@@ -53,40 +53,15 @@ class PostPage(BlogHandler):
         			post = post)	#post.html variable must be 'post'
 
 
-class Edit(BlogHandler):
-    """docstring for Edit"""
-    def get(self, post_id):
-    	key = ndb.Key('Post', int(post_id), parent=blog_key())
-    	post = ndb.key.get()
 
-    	if self.user and self.user.key.id()==post.user_id:
-    		self.render('edit.html',
-    					subject=post.subject,
-    					content=post.content,
-    					post_id=post_id)
-    	elif not self.user:
-    		redirect('/login')
-
-    	else:
-			self.error(404)
-			return
 
 class DropPost(BlogHandler):
 	"""Remove Post"""
 	def get(self, post_id):
-		if self.user and self.user.key.id() == int:
+		if self.user and self.user.key.id() == post.user_id:
 			key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
         	post = key.get()
         	post.delete()
         	self.redirect('/blog')
 
 
-'''
-if self.request.get("delete"):
-                # check if the user is the author of this post
-                if post.user.key().id() == User.by_name(self.user.name).key().id():
-                    # delete the post and redirect to the main page
-                    db.delete(key)
-                    time.sleep(0.1)
-                    self.redirect('/')
-                    '''
