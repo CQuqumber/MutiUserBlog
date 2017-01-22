@@ -23,4 +23,3 @@ class Post(ndb.Model):
 
 
 
-

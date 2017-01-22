@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+    <form method="post">
+            <label>
+                <h1>Subject</h1>
+                <input type="text" name="subject" value="{{subject}}">
+            </label>
+            <br>
+            <label>
+                <h3>Content</h3>
+                <textarea name="content">{{content}}</textarea>
+                <a href="/{{post_id}}">
+            </label>
+
+            <div class="error">{{error}}</div>
+            <input type="submit" value ="save" class="btn btn-success" >
+    </form>
+    <button type="button" class="btn btn-default">
+        <a href="/blog">Back</a>
+    </button>
+    </div>
+</div>
+{% endblock %}
+
+
+

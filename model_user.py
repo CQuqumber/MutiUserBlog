@@ -23,8 +23,7 @@ def valid_pw(name, password, h):
 def users_key(group = 'default'):
     return ndb.Key('users', group)   #db.Key.from_path => ndb.Key
 
-def blog_key(name = 'default'):
-    return ndb.Key('blogs', name)
+
 
 class User(ndb.Model):
     name = ndb.StringProperty(required = True)

@@ -53,6 +53,24 @@ class PostPage(BlogHandler):
         			post = post)	#post.html variable must be 'post'
 
 
+class Edit(BlogHandler):
+    """docstring for Edit"""
+    def get(self, post_id):
+    	key = ndb.Key('Post', int(post_id), parent=blog_key())
+    	post = ndb.key.get()
+
+    	if self.user and self.user.key.id()==post.user_id:
+    		self.render('edit.html',
+    					subject=post.subject,
+    					content=post.content,
+    					post_id=post_id)
+    	elif not self.user:
+    		redirect('/login')
+
+    	else:
+			self.error(404)
+			return
+
 class DropPost(BlogHandler):
 	"""Remove Post"""
 	def get(self, post_id):
