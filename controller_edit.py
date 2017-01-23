@@ -32,15 +32,13 @@ class Edit(BlogHandler):
             content = self.request.get('content')
 
             if subject and content:
-                key = ndb.Key('Post', int(post_id), parent=blog_key())
-                post = key.get()
 
                 post.subject = subject
                 post.content = content
 
                 post.put()
 
-                self.redirect('/blog/%s' % str(post.key.id()))
+                self.redirect('/%s' % str(post.key.id()))
             else:
                 error = "subject and content, please!"
                 self.render("newpost.html", 

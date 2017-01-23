@@ -12,16 +12,16 @@ from handler import *
 
 
 
-#remark : delete welcome.html
 
-app = webapp2.WSGIApplication([('/', Welcome),  #base.html
+                              # Route
+app = webapp2.WSGIApplication([('/', MainPage),  # welcome.html extrend base.html
                                ('/signup', Signup),   #signup-form.html
                                ('/login', Login),     #login-form.html
                                ('/logout', Logout),   #index.html
-                               ('/blog/?', MainPage),   #index.html
-                               ('/blog/newpost', NewPost),  #newpost.html
-                               ('/blog/([0-9]+)', PostPage),  #permalink.html
-                               ('/blog/([0-9]+)/edit', Edit),   #edit.html
-                               ('/blog/([0-9]+)/delete/([0-9]+)', DropPost)
+                               ('/newpost', NewPost),  #newpost.html
+                               ('/([0-9]+)', PostPage),  #permalink.html
+                               ('/([0-9]+)/like',Like),
+                               ('/([0-9]+)/edit', Edit),   #edit.html
+                               ('/([0-9]+)/delete', DropPost)
                                ],
                               debug=True)   #never "deploy" an application with debug_mode=True

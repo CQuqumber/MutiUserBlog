@@ -7,7 +7,7 @@ from google.appengine.ext import ndb
 
 class MainPage(BlogHandler):
     def get(self):
-    	posts = Post.gql("ORDER BY created DESC limit 10")
+    	posts = Post.gql("order by created desc")
 
         if posts:
         	self.render('index.html', posts = posts)
@@ -31,7 +31,7 @@ class NewPost(BlogHandler):
             		content = content,
             		user_id = self.user.key.id())
             p.put()
-            self.redirect('/blog/%s' % str(p.key.id()))
+            self.redirect('/%s' % str(p.key.id()))
         else:
             error = "subject and content, please!"
             self.render("newpost.html", 
@@ -56,13 +56,26 @@ class PostPage(BlogHandler):
 
 
 class DropPost(BlogHandler):
-	"""Remove Post"""
-	def get(self, post_id):
-		if self.user and self.user.key.id() == post.user_id:
-			key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
-        	post = key.get()
-        	post.delete()
-        	self.redirect('/blog')
+    def get(self, post_id):
+
+        key = ndb.Key('Post', int(post_id), parent=blog_key())
+        post = key.get()
+
+        if self.user and self.user.key.id() == post.user_id:
+            key = ndb.Key('Post', int(post_id), parent=blog_key())
+            post = key.get()
+            key.delete()
+
+            self.redirect('/')
+
+        elif not self.user:
+            self.redirect('/login')
+
+        else:
+            error = "This is not your post!"
+            self.render('post.html',post=post, error=error)
+
+
 
 
 

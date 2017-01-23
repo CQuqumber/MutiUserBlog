@@ -11,23 +11,24 @@
             <div class="jumbotron">
   			   <div class="post-heading">
     			     <div class="post-title">
-    				    <h3><a href="/blog/{{post.key.id()}}">{{ post.subject | safe }}</a></h3>
+    				    <h3><a href="/{{post.key.id()}}">{{ post.subject | safe }}</a></h3>
     			     </div>
     			     <div class="post-content">
     				    <p>{{ post.content| safe }}</p>
-    				    <a href="/blog">
+    				    <a href="/">
                             <button class="btn btn-primary">Back</button>
                         </a>
-                        <a href="/blog/{{post.key.id()}}/edit">
+                        <a href="/{{post.key.id()}}/edit">
                             <button class="btn btn-default">Edit</button>
                         </a>
                         <a href="#">
                             <button class="btn btn-default">Comment</button>
                         </a>
-                        <a href="/blog/{{post.key.id()}}/delete/{{post.key.id()}}">
+                        <a href="/{{post.key.id()}}/delete">
                             <button class="btn btn-danger">Delete</button>
                         </a>
     			     </div>
+                     {{ error }}
     		    <br><br>
             </article>
         </div>
