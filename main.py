@@ -16,7 +16,7 @@ from handler import *
 
 app = webapp2.WSGIApplication([('/', Welcome),  #base.html
                                ('/blog/?', MainPage),   #index.html
-                               ('/signup', Register),   #signup-form.html
+                               ('/signup', Signup),   #signup-form.html
                                ('/login', Login),     #login-form.html
                                ('/logout', Logout),   #index.html
                                ('/blog/newpost', NewPost),  #newpost.html

@@ -18,7 +18,7 @@ class Edit(BlogHandler):
 			self.redirect('/login')
 
     	else:
-			self.write('Do not guess the postid')
+			self.write('You are NOT the author!')
 
     def post(self, post_id):
         key = ndb.Key('Post', int(post_id), parent=blog_key())

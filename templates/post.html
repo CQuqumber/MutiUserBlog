@@ -1,12 +1,11 @@
 <div class="jumbotron">
-      <div class="caption">
-            <h1>{{post.subject}}</h1>
-            <p>{{post._render_text | safe}}</p>
-            {{post.created.strftime("%b %d, %Y")}}
-        </div>
-</div>
-<div class="btn-group btn-group-sm" role="group">
-    <button type="button" class="btn btn-default">
-        <a href="/blog">Back</a>
-    </button>
+    <h1>{{post.subject}}</h1>
+    <p>{{post._render_text | safe}}</p>
+       {{post.created.strftime("%b %d, %Y")}}
+
+	<div class="btn btn-default" type='group'>
+    	<button type="button">
+        	<a href="/blog">Back</a>
+    	</button>
+    </div>
 </div>

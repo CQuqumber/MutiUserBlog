@@ -53,12 +53,7 @@ class Signup(BlogHandler):
         else:
             self.done()
 
-    def done(self, *a, **kw):
-        raise NotImplementedError
 
-
-
-class Register(Signup):
     def done(self):
         #make sure the user doesn't already exist
         u = User.by_name(self.username)

@@ -7,7 +7,7 @@
         {% for p in posts %}
         <div class="col-md-12">{{ p }}</div>
             <div class="col-md-12">
-                <h5 class="text-center">{{user.name}}, post.user.id : {{p.user_id}}, user.key.id:{{user.key.id()}}, posted on {{p.created.strftime("%b %d, %Y")}}</h5>
+                <h5 class="text-center">post.user.id : {{p.user_id}}, posted on {{p.created.strftime("%b %d, %Y")}}</h5>
             </div>
         </div>
         <article class="col-md-12 text-center">
