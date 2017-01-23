@@ -8,6 +8,8 @@ from model_like import *
 from controller_post import *
 from controller_user import *
 from controller_edit import *
+from controller_drop import *
+
 from handler import *
 
 
