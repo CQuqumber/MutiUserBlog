@@ -18,12 +18,14 @@
     			     </div>
     			     <div class="post-content">
     				    <p>{{ p.content | safe }}</p>
-                            <a href="/blog/{{p.key.id()}}/edit">
-                                <button class="btn btn-default">Edit</button>
-                            </a>
-                            <a href="#">
-                                <button class="btn btn-default">Delete</button>
-                            </a>
+
+                        <a href="/blog/{{p.key.id()}}/like">
+                            <button class="btn btn-info">Like</button>
+                        </a>
+
+                        <a href="/blog/{{p.key.id()}}/edit">
+                            <button class="btn btn-default">Edit</button>
+                        </a>
     			     </div>
     		    <br><br>
             </article>

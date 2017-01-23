@@ -1,11 +1,36 @@
-<div class="jumbotron">
-    <h1>{{post.subject}}</h1>
-    <p>{{post._render_text | safe}}</p>
-       {{post.created.strftime("%b %d, %Y")}}
+{% extends "base.html" %}
 
-	<div class="btn btn-default" type='group'>
-    	<button type="button">
-        	<a href="/blog">Back</a>
-    	</button>
-    </div>
-</div>
+{% block content %}
+	<main>
+        <div class="row">
+            <div class="col-md-12">
+                <h5 class="text-center">post.user.id : {{post.user_id}}, posted on {{post.created.strftime("%b %d, %Y")}}</h5>
+            </div>
+        </div>
+        <article class="col-md-12 text-center">
+            <div class="jumbotron">
+  			   <div class="post-heading">
+    			     <div class="post-title">
+    				    <h3><a href="/blog/{{post.key.id()}}">{{ post.subject | safe }}</a></h3>
+    			     </div>
+    			     <div class="post-content">
+    				    <p>{{ post.content| safe }}</p>
+    				    <a href="/blog">
+                            <button class="btn btn-primary">Back</button>
+                        </a>
+                        <a href="/blog/{{post.key.id()}}/edit">
+                            <button class="btn btn-default">Edit</button>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn-default">Comment</button>
+                        </a>
+                        <a href="/blog/{{post.key.id()}}/delete/{{post.key.id()}}">
+                            <button class="btn btn-danger">Delete</button>
+                        </a>
+    			     </div>
+    		    <br><br>
+            </article>
+        </div>
+    </main>
+
+{% endblock %}

@@ -15,10 +15,10 @@ from handler import *
 #remark : delete welcome.html
 
 app = webapp2.WSGIApplication([('/', Welcome),  #base.html
-                               ('/blog/?', MainPage),   #index.html
                                ('/signup', Signup),   #signup-form.html
                                ('/login', Login),     #login-form.html
                                ('/logout', Logout),   #index.html
+                               ('/blog/?', MainPage),   #index.html
                                ('/blog/newpost', NewPost),  #newpost.html
                                ('/blog/([0-9]+)', PostPage),  #permalink.html
                                ('/blog/([0-9]+)/edit', Edit),   #edit.html

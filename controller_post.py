@@ -65,3 +65,5 @@ class DropPost(BlogHandler):
         	self.redirect('/blog')
 
 
+
+
