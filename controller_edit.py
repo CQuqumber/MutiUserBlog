@@ -5,10 +5,10 @@ from google.appengine.ext import ndb
 
 class Edit(BlogHandler):
     def get(self, post_id):
-        key = db.Key.from_path('Post', int(post_id), parent=blog_key())
-        post = db.get(key)
+        key = ndb.Key('Post', int(post_id), parent=blog_key())
+        post = key.get()
 
-        if self.user and self.user.key().id() == post.user_id:
+        if self.user and self.user.key.id() == post.user_id:
             self.render('editpost.html', 
                         subject=post.subject,
                         content=post.content, 
