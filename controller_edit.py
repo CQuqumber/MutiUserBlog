@@ -9,7 +9,7 @@ class Edit(BlogHandler):
         post = key.get()
 
         if self.user and self.user.key.id() == post.user_id:
-            self.render('editpost.html', 
+            self.render('edit.html', 
                         subject=post.subject,
                         content=post.content, 
                         post_id=post_id)
@@ -21,6 +21,8 @@ class Edit(BlogHandler):
 			self.write('Do not guess the postid')
 
     def post(self, post_id):
+        key = ndb.Key('Post', int(post_id), parent=blog_key())
+        post = key.get()
 
         if not self.user:
             self.redirect('/login')
