@@ -52,11 +52,12 @@ class User(ndb.Model):
 
     @classmethod
     def by_id(cls, userid):    #at { @ } : decorators >> User.by_id
-        return User.by_id(userid, parent=users_key())
-
+        return User.get_by_id(userid, parent=users_key())
+                #get_by_id(id, parent=None, app=None, namespace=None, **ctx_options)
+                #shorthand for Key(cls, id).get()
 
     @classmethod
     def by_name(cls, name):    #at { @ } : decorators >> User.by_name
-        user = User.query(User.name == name).fetch(1)
-        for u in user:
+        user = User.query(User.name == name).get()
+        for u in user:                      #get() similiar fetch(1) always returns a list
             return u
