@@ -52,7 +52,7 @@ class User(ndb.Model):
 
     @classmethod
     def by_id(cls, userid):    #at { @ } : decorators >> User.by_id
-        return User.get_by_id(userid, parent=users_key())
+        return User.by_id(userid, parent=users_key())
 
 
     @classmethod
