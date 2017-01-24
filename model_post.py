@@ -6,7 +6,7 @@ from google.appengine.ext import ndb
 
 class Post(ndb.Model):
     '''Table for Post'''
-    #author = ndb.StructuredProperty(User)
+    author = ndb.StringProperty(required = True)
     subject = ndb.StringProperty(required = True)
     content = ndb.TextProperty(required = True)
     user_id = ndb.IntegerProperty(required=True)
@@ -19,7 +19,8 @@ class Post(ndb.Model):
         user = key.get()
 
         self._render_text = self.content.replace('\n', '<br>')
-        return render_str("post.html", p = self, current_user_id=current_user_id, author=user.name)
+        return render_str("post.html")
+        #return render_str("post.html", p = self, current_user_id=current_user_id, author=user.name)
 
 
 

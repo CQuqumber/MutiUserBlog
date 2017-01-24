@@ -4,15 +4,15 @@
 
 	<main>
         <div class="row">
-        {% for p in posts %}
-        <div class="col-md-12">{{ p }}</div>
-            <div class="col-md-12">
-                <h5 class="text-center">post.user.id : {{p.user_id}}, posted on {{p.created.strftime("%b %d, %Y")}}</h5>
-            </div>
+            {% for p in posts %}
+            <div class="col-md-12">{{ p }}</div>
         </div>
         <article class="col-md-12 text-center">
             <div class="jumbotron">
   			   <div class="post-heading">
+                    <div class="col-md-12">
+                        <h4 class="text-center"> p.author : {{p.author}} ; p.user.id : {{p.user_id}}, posted on {{p.created.strftime("%b %d, %Y")}}</h4>
+                        </div>
     			     <div class="post-title">
     				    <h3><a href="/{{p.key.id()}}">{{ p.subject | safe }}</a></h3>
     			     </div>
