@@ -36,7 +36,7 @@ class User(ndb.Model):
         return user.key.id()
 
 
-    @classmethod
+    @classmethod    #for controller Signup
     def register(cls, name, pw, email = None):  #at { @ } : decorators >> User.register
         pw_hash = make_pw_hash(name, pw)
         return User(parent = users_key(),
@@ -58,6 +58,6 @@ class User(ndb.Model):
 
     @classmethod
     def by_name(cls, name):    #at { @ } : decorators >> User.by_name
-        user = User.query(User.name == name).get()
-        for u in user:                      #get() similiar fetch(1) always returns a list
+        user = User.query(User.name == name).fetch(1)
+        for u in user:                      #get() "similiar" fetch(1)= always returns a list
             return u

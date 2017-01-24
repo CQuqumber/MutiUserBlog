@@ -56,7 +56,7 @@ class Signup(BlogHandler):
 
     def done(self):
         #make sure the user doesn't already exist
-        u = User.by_name(self.username)
+        u = User.by_name(self.username)     #query(User.name == name).fetch(1)
         if u:
             msg = 'That user already exists.'
             self.render('signup-form.html', error_username = msg)
@@ -65,7 +65,7 @@ class Signup(BlogHandler):
             u.put()
 
             self.login(u)
-            self.redirect('/blog')
+            self.redirect('/')
 
 class Login(BlogHandler):
     def get(self):
