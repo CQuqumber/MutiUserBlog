@@ -23,6 +23,8 @@ class LikePost(BlogHandler):
             #like = Like.all().filter('user_id =', user_id).filter('post_id =', post_id).get()
 
             if like:    #   For already like
+                post.likes -= 1
+                post.put()
                 self.redirect('/')
 
             else:   # non like
