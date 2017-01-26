@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
 	<main>
         <div class="row">
             <div class="col-md-12">{{post}}</div>
+            <div class="col-md-12">{{comments}}</div>
             <div class="col-md-12">
                 <h5 class="text-center"> post.author : {{post.author}} ; post.user.id : {{post.user_id}} ; posted on {{post.created.strftime("%b %d, %Y")}}</h5>
             </div>
@@ -16,21 +19,31 @@
     			     </div>
     			     <div class="post-content">
     				    <p>{{ post.content| safe }}</p>
-    				    <a href="/">
+    				    <a href="/">&#10149;
                             <button class="btn btn-primary">Back</button>
                         </a>
-                        <a href="/{{post.key.id()}}/edit">
+                        <a href="/{{post.key.id()}}/edit">&#9998;
                             <button class="btn btn-default">Edit</button>
                         </a>
-                        <a href="#">
+                        <a href="/{{post.key.id()}}/comment/{{post.user_id}}">
                             <button class="btn btn-default">Comment</button>
                         </a>
-                        <a href="/{{post.key.id()}}/delete">
+                        <a href="/{{post.key.id()}}/delete">&#9904;
                             <button class="btn btn-danger">Delete</button>
                         </a>
     			     </div>
                      {{ error }}
     		    <br><br>
+                <div class="col-md-6 offset-md-3">
+                    {% for c in comments %}
+                    <div class="col-md-12">{{ c }}</div>c.user_id : {{c.user_id}} ; 
+                    <h4> {{ c.user_name }}</h4>posted on {{c.created.strftime("%b %d, %Y")}}
+                    <div class="post-content">
+                        <p>{{ c.comment| safe }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
             </article>
         </div>
     </main>

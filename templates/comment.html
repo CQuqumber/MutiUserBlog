@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <article class="col-md-12 text-center">
+        <h2>New Comment</h2>
+        <form method="post">
+            <textarea name="comment" placeholder="Write a comment! Here!">{{ comment }}</textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </article>
+{% endblock %}
+
+
+

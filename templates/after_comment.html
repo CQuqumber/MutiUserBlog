@@ -1,0 +1,10 @@
+<!--include by post.html-->
+ <div class="col-md-6 offset-md-3">
+         {% for c in comments %}
+    <div class="col-md-12">{{ c }}</div>c.user_id : {{c.user_id}} ; 
+    <h4> {{ c.comment_author }}</h4>posted on {{c.created.strftime("%b %d, %Y")}}
+    <div class="post-content">
+    	<p>{{ c.comment| safe }}</p>
+    </div>
+         {% endfor %}
+</div>

@@ -1,6 +1,6 @@
 from handler import *
 from model_post import *
-
+from model_comment import *
 
 from google.appengine.ext import ndb
 
@@ -8,9 +8,10 @@ from google.appengine.ext import ndb
 class MainPage(BlogHandler):
     def get(self):
     	posts = Post.gql("order by created desc")
-        #u = User.query(User.name == name).fetch(1)
+        #posts = Post.query().order(-Post.created).get()
+        #.fetch() always returns a list, while .get() returns the first result,
         if posts:
-        	self.render('index.html', posts = posts)
+        	self.render('front.html', posts = posts)
 
 
 class NewPost(BlogHandler):
@@ -48,11 +49,14 @@ class PostPage(BlogHandler):
         key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
         post = key.get()	#db.get(key) => NDB  key.get()
 
+        comments=Comment.query().fetch()
+
         if not post:
             self.error(404)
             return
         self.render("post.html",
-        			post = post)	#post.html variable must be 'post'
+        			post = post,
+                    comments = comments)	#post.html variable must be 'post' and ' comments'
 
 
 
