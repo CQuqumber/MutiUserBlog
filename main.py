@@ -28,6 +28,6 @@ app = webapp2.WSGIApplication([('/', MainPage),  # welcome.html extrend base.htm
                                ('/([0-9]+)/like',LikePost),
                                ('/([0-9]+)/edit', Edit),   #edit.html
                                ('/([0-9]+)/delete', DropPost),
-                               ('/([0-9]+)/comment/([0-9]+)', Comment)
+                               ('/([0-9]+)/comment/([0-9]+)', CommentPost)
                                ],
                               debug=True)   #never "deploy" an application with debug_mode=True

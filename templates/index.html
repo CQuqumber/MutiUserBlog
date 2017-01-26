@@ -2,6 +2,7 @@
 	<main>
         <div class="row">
             <div class="col-md-12">{{ p }}</div>
+            <div class="col-md-12">{{ like }}</div>
         </div>
         <article class="col-md-12 text-center">
             <div class="jumbotron">
@@ -16,7 +17,7 @@
     				    <p>{{ p._render_text | safe }}</p>
 
                         <a href="/{{p.key.id()}}/like">
-                            <button class="btn btn-info">Like</button>  +{{p.likes}}
+                            <button class="btn btn-info">Like</button>  {{p.likes}}
                         </a>
 
                         <a href="/{{p.key.id()}}/edit">
