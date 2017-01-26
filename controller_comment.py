@@ -5,7 +5,7 @@ from model_comment import *
 
 from google.appengine.ext import ndb
 
-class Comment(BlogHandler):
+class CommentPost(BlogHandler):
 
     def get(self,post_id,user_id):      #route set /([0-9]+)/comment/([0-9]+)
         if self.user:
