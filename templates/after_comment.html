@@ -1,10 +1,14 @@
 <!--include by post.html-->
- <div class="col-md-6 offset-md-3">
-         {% for c in comments %}
-    <div class="col-md-12">{{ c }}</div>c.user_id : {{c.user_id}} ; 
-    <h4> {{ c.comment_author }}</h4>posted on {{c.created.strftime("%b %d, %Y")}}
-    <div class="post-content">
-    	<p>{{ c.comment| safe }}</p>
-    </div>
+<div class="container">
+       {% for c in comments %}
+    	<div class="list-group col-md-4 ">
+  			<a href="#" class="list-group-item active">
+    			<h4 class="list-group-item-heading">{{ c.user_name }}</h4>
+    		<p class="list-group-item-text">posted on {{c.created.strftime("%b %d, %Y")}}</p>
+  			</a>
+  			<p>{{ c.comment| safe }}</p>
+  			<br><br>
+		</div>
          {% endfor %}
 </div>
+

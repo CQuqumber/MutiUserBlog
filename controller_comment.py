@@ -19,24 +19,21 @@ class CommentPost(BlogHandler):
             return
 
         key = ndb.Key('Post',int(post_id), parent=blog_key())
-        #post = key.get()
+        post = key.get()
         comment = self.request.get('comment')
-        user_name = self.user.name
-        c = Comment(parent=key, user_id=int(user_id), comment=comment, user_name=user_name)
-        c.put()
-        self.redirect('/' + post_id)
-'''
+
         if not comment:
             error = 'No Empty Comment, Plz!'
             self.render('comment.html',error=error)
 
         else:
             c = Comment(parent=key, 
-                        user_id=int(user_id), 
+                        user_id=int(user_id),
+                        post_id=post.key.id(), 
                         comment=comment, 
-                        user_name=user_name)
+                        user_name=self.user.name)
             c.put()
 
             self.redirect('/%s' %str(post.key.id()))
 
-'''
+

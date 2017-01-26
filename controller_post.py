@@ -49,8 +49,9 @@ class PostPage(BlogHandler):
         key = ndb.Key('Post', int(post_id), parent=blog_key())	#db.Key.from_path() => ndb.Key()
         post = key.get()	#db.get(key) => NDB  key.get()
 
-        comments=Comment.query().fetch()
+        #comments=Comment.query().order(-Comment.created).get()
 
+        comments = Comment.query(Comment.post_id == post.key.id()).order(-Comment.created).fetch()
         if not post:
             self.error(404)
             return

@@ -6,7 +6,6 @@
 	<main>
         <div class="row">
             <div class="col-md-12">{{post}}</div>
-            <div class="col-md-12">{{comments}}</div>
             <div class="col-md-12">
                 <h5 class="text-center"> post.author : {{post.author}} ; post.user.id : {{post.user_id}} ; posted on {{post.created.strftime("%b %d, %Y")}}</h5>
             </div>
@@ -34,18 +33,9 @@
     			     </div>
                      {{ error }}
     		    <br><br>
-                <div class="col-md-6 offset-md-3">
-                    {% for c in comments %}
-                    <div class="col-md-12">{{ c }}</div>c.user_id : {{c.user_id}} ; 
-                    <h4> {{ c.user_name }}</h4>posted on {{c.created.strftime("%b %d, %Y")}}
-                    <div class="post-content">
-                        <p>{{ c.comment| safe }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-
             </article>
         </div>
+             {% include 'after_comment.html'%}
     </main>
 
 {% endblock %}

@@ -17,7 +17,9 @@
     				    <p>{{ p._render_text | safe }}</p>
 
                         <a href="/{{p.key.id()}}/like">
-                            <button class="btn btn-info">Like</button>  {{p.likes}}
+                            <button class="btn btn-info" type="button">
+                             Like <span class="badge">+{{p.likes}}</span>
+                            </button>
                         </a>
 
                         <a href="/{{p.key.id()}}/edit">
