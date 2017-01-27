@@ -20,7 +20,7 @@ class Edit(BlogHandler):
         else:
             self.write('You are NOT the author!')
 
-    def post(self):
+    def post(self,post_id):
         key = ndb.Key('Post', int(post_id), parent=blog_key())
         post = key.get()
 
@@ -38,7 +38,7 @@ class Edit(BlogHandler):
 
                 post.put()
 
-                self.redirect('/%s' % str(post.key.id()))
+                self.redirect('/%s' % str(post_id))
             else:
                 error = "subject and content, please!"
                 self.render("newpost.html",
