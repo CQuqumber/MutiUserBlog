@@ -13,6 +13,7 @@ from controller_like import *
 from controller_drop import *
 from controller_comment import *
 from controller_comment_edit import *
+from controller_comment_drop import *
 from handler import *
 
 

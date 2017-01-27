@@ -8,7 +8,7 @@
   			</a>
   			<p>{{ c.comment| safe }}</p>
         <br>
-        <a href="/{{post.key.id()}}/comment/{{post.user_id}}/delete">
+        <a href="/{{post.key.id()}}/comment/{{post.user_id}}/delete/{{c.key.id()}}">
             <button class="btn btn-danger btn-xs pull-right" type="button">
             Delete <span class="badge">&#x2717;</span>
             </button>
