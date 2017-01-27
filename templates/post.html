@@ -17,23 +17,23 @@
     			     <div class="post-content">
     				    <p>{{ post.content| safe }}</p>
                         <br>
-    				    <a href="/">
-                            <button class="btn btn-primary btn-sm" type="button">
-                            Back <span class="badge">&#x21A9;</span>
-                            </button>
-                        </a>
                         <a href="/{{post.key.id()}}/edit">
-                            <button class="btn btn-info" type="button">
+                            <button class="btn btn-info pull-left" type="button">
                             Edit <span class="badge">&#x270D;</span>
                             </button>
                         </a>
                         <a href="/{{post.key.id()}}/comment/{{post.user_id}}">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default pull-left" type="button">
                             Comment <span class="badge">&#x2710;</span>
                             </button>
                         </a>
+                        <a href="/">
+                            <button class="btn btn-warning btn-sm pull-right" type="button">
+                            Cancel <span class="badge">&#x21A9;</span>
+                            </button>
+                        </a>
                         <a href="/{{post.key.id()}}/delete">
-                            <button class="btn btn-danger btn-sm" type="button">
+                            <button class="btn btn-danger btn-sm pull-right" type="button">
                             Delete <span class="badge">&#x2717;</span>
                             </button>
                         </a>
