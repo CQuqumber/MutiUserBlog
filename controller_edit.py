@@ -9,23 +9,23 @@ class Edit(BlogHandler):
         post = key.get()
 
         if self.user and self.user.key.id() == post.user_id:
-            self.render('edit.html', 
+            self.render('edit.html',
                         subject=post.subject,
-                        content=post.content, 
+                        content=post.content,
                         post_id=post_id)
 
     	elif not self.user:
-			self.redirect('/login')
+            self.redirect('/login')
 
-    	else:
-			self.write('You are NOT the author!')
+        else:
+            self.write('You are NOT the author!')
 
-    def post(self, post_id):
+    def post(self):
         key = ndb.Key('Post', int(post_id), parent=blog_key())
         post = key.get()
 
         if not self.user:
-            self.redirect('/login')
+            return self.redirect('/login')
 
         if self.user and self.user.key.id() == post.user_id:
             subject = self.request.get('subject')
@@ -41,9 +41,9 @@ class Edit(BlogHandler):
                 self.redirect('/%s' % str(post.key.id()))
             else:
                 error = "subject and content, please!"
-                self.render("newpost.html", 
-                            subject=subject, 
-                            content=content, 
+                self.render("newpost.html",
+                            subject=subject,
+                            content=content,
                             error=error)
         else:
             self.write("You are not author!")

@@ -1,8 +1,8 @@
 from handler import *
 from model_post import *
 
-
 from google.appengine.ext import ndb
+
 
 class DropPost(BlogHandler):
     def get(self, post_id):
@@ -22,4 +22,4 @@ class DropPost(BlogHandler):
 
         else:
             error = "This is not your post!"
-            self.render('post.html',post=post, error=error)
+            self.render('post.html', post=post, error=error)

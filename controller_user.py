@@ -5,21 +5,22 @@ from handler import BlogHandler
 from model_user import User
 
 
-
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-def valid_username(username):
-    return username and USER_RE.match(username)
-
-PASS_RE = re.compile(r"^.{3,20}$")
-def valid_password(password):
-    return password and PASS_RE.match(password)
-
-EMAIL_RE  = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
-def valid_email(email):
-    return not email or EMAIL_RE.match(email)
-
-
 class Signup(BlogHandler):
+    USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
+
+    def valid_username(username):
+        return username and USER_RE.match(username)
+
+    PASS_RE = re.compile(r"^.{3,20}$")
+
+    def valid_password(password):
+        return password and PASS_RE.match(password)
+
+    EMAIL_RE = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
+
+    def valid_email(email):
+        return not email or EMAIL_RE.match(email)
+
     def get(self):
         self.render("signup-form.html")
 
@@ -30,15 +31,17 @@ class Signup(BlogHandler):
         self.verify = self.request.get('verify')
         self.email = self.request.get('email')
 
-        params = dict(username = self.username,
-                      email = self.email)
+        params = dict(username=self.username,
+                      email=self.email)
 
         if not valid_username(self.username):
-            params['error_username'] = "That's not a valid username or password."
+            params['error_username'] = "That's not a valid username \
+                                        or password."
             have_error = True
 
         if not valid_password(self.password):
-            params['error_password'] = "That's not a valid username or password."
+            params['error_password'] = "That's not a valid username \
+                                        or password."
             have_error = True
         elif self.password != self.verify:
             params['error_verify'] = "Your passwords didn't match."
@@ -53,19 +56,19 @@ class Signup(BlogHandler):
         else:
             self.done()
 
-
     def done(self):
-        #make sure the user doesn't already exist
-        u = User.by_name(self.username)     #query(User.name == name).fetch(1)
+        #  make sure the user doesn't already exist
+        u = User.by_name(self.username)
         if u:
             msg = 'That user already exists.'
-            self.render('signup-form.html', error_username = msg)
+            self.render('signup-form.html', error_username=msg)
         else:
             u = User.register(self.username, self.password, self.email)
             u.put()
 
             self.login(u)
             self.redirect('/')
+
 
 class Login(BlogHandler):
     def get(self):
@@ -81,8 +84,7 @@ class Login(BlogHandler):
             self.redirect('/')
         else:
             msg = 'Invalid login'
-            self.render('login-form.html', error = msg)
-
+            self.render('login-form.html', error=msg)
 
 
 class Logout(BlogHandler):
