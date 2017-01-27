@@ -19,7 +19,7 @@ class Edit(BlogHandler):
         else:
             self.write('You are NOT the author!')
 
-    def post(self,post_id):
+    def post(self, post_id):
         key = ndb.Key('Post', int(post_id), parent=blog_key())
         post = key.get()
 

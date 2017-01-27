@@ -6,18 +6,19 @@ from google.appengine.ext import ndb
 
 class CommentEdit(BlogHandler):
 
-    def get(self, post_id, comment_user_id, comment_post_id):   # 3 args for routes set
+    def get(self, post_id, comment_user_id, comment_post_id):
+                    # 3 args for routes set
 
         if self.user and self.user.key.id() == int(comment_user_id):
             postkey = ndb.Key('Post', int(post_id), parent=blog_key())
             key = ndb.Key('Comment', int(comment_post_id), parent=postkey)
             comm = key.get()
             self.render('edit_comment.html',
-                        comment=comm.comment,   #  html variable = database.attribute
+                        comment=comm.comment,
                         user_name=comm.user_name,
                         created=comm.created,
                         post_id=post_id)
-
+                        #  html variable=database.attribute
     	elif not self.user:
             self.redirect('/login')
 
