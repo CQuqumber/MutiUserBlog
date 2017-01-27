@@ -51,7 +51,7 @@ class PostPage(BlogHandler):
             .order(-Comment.created).fetch()
 
         if not post:
-            return self.error(404)
+            return
         else:
             return self.render("post.html",
                 post=post, comments=comments)
