@@ -17,8 +17,7 @@ class CommentEdit(BlogHandler):
                         comment=comm.comment,
                         user_name=comm.user_name,
                         created=comm.created,
-                        post_id=post_id)
-                        #  html variable=database.attribute
+                        post_id=post_id)  #html variable=database.attribute
     	elif not self.user:
             self.redirect('/login')
 

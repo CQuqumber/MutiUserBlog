@@ -14,11 +14,11 @@ class CommentDrop(BlogHandler):
             key = ndb.Key('Comment', int(comment_post_id), parent=postkey)
             comm = key.get()
             key.delete()
-            self.redirect('/%s' %str(post_id))
+            self.redirect('/%s' % str(post_id))
 
         elif not self.user:
             self.redirect('/login')
 
         else:
-            error='You Cant delete others post!'
+            error = 'You Cant delete others post!'
             self.render('base.html', error=error)

@@ -28,31 +28,26 @@ class NewPost(BlogHandler):
         content = self.request.get('content')
         author = self.user.name
         if subject and content:
-            p = Post(parent=blog_key(), subject=subject,
-                content=content, author=author, user_id=self.user.key.id())
+            p = Post(parent=blog_key(), subject=subject, content=content, author=author, user_id=self.user.key.id())
 
             p.put()
             self.redirect('/%s' % str(p.key.id()))
         else:
             error = "subject and content, please!"
-            return self.render("newpost.html",
-                subject=subject, content=content, error=error)
+            return self.render("newpost.html", subject=subject, content=content, error=error)
             #  newpost.html variables has subject, content, and error
 
 
 class PostPage(BlogHandler):
     def get(self, post_id):
-        key = ndb.Key('Post', int(post_id),
-        parent=blog_key())
+        key = ndb.Key('Post', int(post_id), parent=blog_key())
 
         post = key.get()
 
-        comments = Comment.query(Comment.post_id == post.key.id())\
-            .order(-Comment.created).fetch()
+        comments = Comment.query(Comment.post_id == post.key.id()).order(-Comment.created).fetch()
 
         if not post:
             return
         else:
-            return self.render("post.html",
-                post=post, comments=comments)
+            return self.render("post.html", post=post, comments=comments)
         #   post.html variable must be 'post' and ' comments'

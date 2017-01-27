@@ -14,6 +14,11 @@ indexes:
   properties:
   - name: post_id
   - name: created
+
+- kind: Comment
+  properties:
+  - name: post_id
+  - name: created
     direction: desc
 
 - kind: Post
