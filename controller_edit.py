@@ -11,8 +11,7 @@ class Edit(BlogHandler):
         if self.user and self.user.key.id() == post.user_id:
             self.render('edit.html',
                         subject=post.subject,
-                        content=post.content,
-                        post_id=post_id)
+                        content=post.content)
 
     	elif not self.user:
             self.redirect('/login')

@@ -8,16 +8,17 @@
   			</a>
   			<p>{{ c.comment| safe }}</p>
         <br>
-        <a href="#">
-            <button class="btn btn-danger pull-right" type="button">
+        <a href="/{{post.key.id()}}/comment/{{post.user_id}}/delete">
+            <button class="btn btn-danger btn-xs pull-right" type="button">
             Delete <span class="badge">&#x2717;</span>
             </button>
         </a>
-        <a href="#">
-            <button class="btn btn-info pull-right" type="button">
+        <a href="/{{post.key.id()}}/comment/{{post.user_id}}/edit/{{c.key.id()}}">
+            <button class="btn btn-info btn-xs pull-right" type="button">
             Edit <span class="badge">&#x270D;</span>
             </button>
         </a>
+        {{error}}
 		</div>
          {% endfor %}
 </div>

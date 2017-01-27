@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 	<main>
         <div class="row">
             <div class="col-md-12">
@@ -17,8 +16,9 @@
     			     </div>
     			     <div class="post-content">
     				    <p>{{ post.content| safe }}</p>
+                        <br>
     				    <a href="/">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary btn-sm" type="button">
                             Back <span class="badge">&#x21A9;</span>
                             </button>
                         </a>
@@ -33,13 +33,12 @@
                             </button>
                         </a>
                         <a href="/{{post.key.id()}}/delete">
-                            <button class="btn btn-danger" type="button">
+                            <button class="btn btn-danger btn-sm" type="button">
                             Delete <span class="badge">&#x2717;</span>
                             </button>
                         </a>
     			     </div>
                      {{ error }}
-    		    <br><br>
             </article>
         </div>
              {% include 'after_comment.html'%}

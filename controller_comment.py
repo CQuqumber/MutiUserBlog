@@ -27,10 +27,10 @@ class CommentPost(BlogHandler):
             self.render('comment.html',error=error)
 
         else:
-            c = Comment(parent=key, 
+            c = Comment(parent=key,
                         user_id=int(user_id),
-                        post_id=post.key.id(), 
-                        comment=comment, 
+                        post_id=post.key.id(),
+                        comment=comment,
                         user_name=self.user.name)
             c.put()
 

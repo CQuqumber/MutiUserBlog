@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!--include by post.html-->
+	<div class="container">
+    	<div class="list-group col-md-4 ">
+    		<form method="post">
+  				<a href="#" class="list-group-item active">
+    				<h4 class="list-group-item-heading">{{ user_name }}</h4>
+    				<p class="list-group-item-text">posted on {{created.strftime("%b %d, %Y")}}</p>
+  				</a>
+         		<label>
+               		<h3>Edit Comment</h3>
+                	<textarea type="text" name="comment">{{comment}}</textarea>
+            	</label>
+            	<input type="submit" value ="Save" class="btn btn-success btn-xs" >
+            	<button type="button" class="btn btn-warning btn-xs pull-center">
+                	<a href="/{{post_id}}">Cancel</a>
+            	</button>
+        	{{error}}
+        	</form>
+		</div>
+	</div>
+
+{% endblock %}
