@@ -17,17 +17,25 @@
     			     </div>
     			     <div class="post-content">
     				    <p>{{ post.content| safe }}</p>
-    				    <a href="/">&#10149;
-                            <button class="btn btn-primary">Back</button>
+    				    <a href="/">
+                            <button class="btn btn-primary" type="button">
+                            Back <span class="badge">&#x21A9;</span>
+                            </button>
                         </a>
-                        <a href="/{{post.key.id()}}/edit">&#9998;
-                            <button class="btn btn-default">Edit</button>
+                        <a href="/{{post.key.id()}}/edit">
+                            <button class="btn btn-info" type="button">
+                            Edit <span class="badge">&#x270D;</span>
+                            </button>
                         </a>
                         <a href="/{{post.key.id()}}/comment/{{post.user_id}}">
-                            <button class="btn btn-default">Comment</button>
+                            <button class="btn btn-default" type="button">
+                            Comment <span class="badge">&#x2710;</span>
+                            </button>
                         </a>
-                        <a href="/{{post.key.id()}}/delete">&#9904;
-                            <button class="btn btn-danger">Delete</button>
+                        <a href="/{{post.key.id()}}/delete">
+                            <button class="btn btn-danger" type="button">
+                            Delete <span class="badge">&#x2717;</span>
+                            </button>
                         </a>
     			     </div>
                      {{ error }}

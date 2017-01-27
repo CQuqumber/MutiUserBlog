@@ -7,7 +7,17 @@
     		<p class="list-group-item-text">posted on {{c.created.strftime("%b %d, %Y")}}</p>
   			</a>
   			<p>{{ c.comment| safe }}</p>
-  			<br><br>
+        <br>
+        <a href="#">
+            <button class="btn btn-danger pull-right" type="button">
+            Delete <span class="badge">&#x2717;</span>
+            </button>
+        </a>
+        <a href="#">
+            <button class="btn btn-info pull-right" type="button">
+            Edit <span class="badge">&#x270D;</span>
+            </button>
+        </a>
 		</div>
          {% endfor %}
 </div>
