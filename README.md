@@ -44,7 +44,7 @@ Live Version: https://divine-builder-157003.appspot.com
 ## Reference
 - Stack Overflow to find out the error.
 - Bootstrap [Component Overview](http://getbootstrap.com/components/)
-- NDB Official[Libaray Docs](https://cloud.google.com/appengine/docs/python/ndb/modelclass)
+- NDB Official [Libaray Docs](https://cloud.google.com/appengine/docs/python/ndb/modelclass)
 
 ## Copyright and License
 
