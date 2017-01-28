@@ -3,11 +3,14 @@
 The 3rd project from the Full-Stack Web Developer Nanodegree in
 [Udacity](https://www.udacity.com/nanodegree).
 
+Live Version: https://divine-builder-157003.appspot.com
 
 ## Table of contents
 
 - Let’s Get Started
 - What's included
+- Reference
+- Copyright and License
 
 ## Let’s Get Started
 - Install Python if necessary.
@@ -37,6 +40,12 @@ The 3rd project from the Full-Stack Web Developer Nanodegree in
 │
 └── README.md
 ```
+
+## Reference
+- Stack Overflow to find out the error.
+- Bootstrap [Component Overview](http://getbootstrap.com/components/)
+- NDB Official[Libaray Docs](https://cloud.google.com/appengine/docs/python/ndb/modelclass)
+
 ## Copyright and License
 
 - Additional code **Free !**
