@@ -3,7 +3,7 @@
 The 3rd project from the Full-Stack Web Developer Nanodegree in
 [Udacity](https://www.udacity.com/nanodegree).
 
-Live Version: https://divine-builder-157003.appspot.com
+Live Version: https://brave-framework-157101.appspot.com
 
 ## Table of contents
 
