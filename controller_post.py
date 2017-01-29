@@ -44,7 +44,7 @@ class PostPage(BlogHandler):
 
         post = key.get()
 
-        comments = Comment.query().order(-Comment.created).fetch()
+        comments = Comment.query(Comment.post_id==post.key.id()).order(-Comment.created).fetch()
 
         if not post:
             return
