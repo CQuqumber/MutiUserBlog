@@ -1,29 +1,10 @@
-import random
-import hashlib
+from controller_validate import *  #  validated pwd
 
-from string import letters
 from google.appengine.ext import ndb
 
 
 def users_key(group = 'default'):
     return ndb.Key('users', group)   #db.Key.from_path => ndb.Key
-
-
-#   validate psw
-def make_salt(length = 5):
-    return ''.join(random.choice(letters) for x in xrange(length))
-
-def make_pw_hash(name, pw, salt = None):
-    if not salt:
-        salt = make_salt()
-    h = hashlib.sha256(name + pw + salt).hexdigest()
-    return '%s,%s' % (salt, h)
-
-def valid_pw(name, password, h):
-    salt = h.split(',')[0]
-    return h == make_pw_hash(name, password, salt)
-
-
 
 
 class User(ndb.Model):

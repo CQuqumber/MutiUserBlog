@@ -44,10 +44,10 @@ class PostPage(BlogHandler):
 
         post = key.get()
 
-        comments = Comment.query(Comment.post_id==post.key.id()).order(-Comment.created).fetch()
+        comments = Comment.query().filter(Comment.post_id==key.id()).order(-Comment.created).fetch()
 
         if not post:
             return
         else:
             return self.render("post.html", post=post, comments=comments)
-        #   post.html variable must be 'post' and ' comments'
+        #   post.html variable must be 'post' and 'comments'
